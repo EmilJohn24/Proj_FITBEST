@@ -1,14 +1,13 @@
 conversion_lexicon = {
     'lb': 0.45,
     'ft': 0.3,
-    "'" : 0.3,
-    '"' : 0.00393700787,
+    "'": 0.3,
+    '"': 0.00393700787,
     'in': 0.00393700787
 }
 
 
 def lexical_metric_conversion(value: str):
-    result = 0
     tokens = []
     running_digit = ""
     running_unit = ""
