@@ -32,7 +32,6 @@ def lexical_metric_conversion(value: str):
     return ''.join(tokens)
 
 
-
 def get_user_data():
     users = open('user.txt', 'r').readlines()
     userbase = dict()
@@ -49,7 +48,7 @@ def signup():
     userbase = get_user_data()
     if username not in userbase.keys():
         users.write("\n{0},{1}".format(username, password))
-        os.system(f"mkdir {username}")
+        os.system(f"mkdir Users\\{username}")
     else:
         print("Username already taken")
         signup()
@@ -61,7 +60,22 @@ def login(user_info):
     userbase = get_user_data()
 
     if (username, password) in userbase.items():
-        user_info['user'] = username
+        user_info['User'] = username
     else:
         print("Invalid login")
         login(user_info)
+
+
+def write_user_data(user_info):
+    user_file = open(f"Users\\{user_info['User']}", 'a')
+    for label, data in user_info.items():
+        user_file.write(f"{label}:{data}")
+
+
+def fetch_user_info(username):
+    lines = open(f"Users\\{username}", 'r').readlines()
+    user_info = {}
+    for line in lines:
+        [label, data] = line.split(":")
+        user_info[label] = data
+
