@@ -67,7 +67,7 @@ def login(user_info):
 
 
 def write_user_data(user_info):
-    user_file = open(f"Users\\{user_info['User']}", 'a')
+    user_file = open(f"Users\\{user_info['User']}", 'w')
     for label, data in user_info.items():
         user_file.write(f"{label}:{data}")
 
