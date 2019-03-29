@@ -29,9 +29,8 @@ def lexical_metric_conversion(value: str):
     for index, token in enumerate(tokens):
         if isinstance(token, str):
             tokens[index - 1] *= conversion_lexicon[token]
-            print("Converting...")
             del tokens[index]
-    return sum(tokens)
+    return str(sum(tokens))
 
 
 def calculate_bmi(weight, height):
@@ -45,9 +44,9 @@ def calculate_bmr(weight, height, sex, age):
     weight = float(weight)
     age = int(age)
     if sex == 'M':
-        BMR = (10 * weight) + (6.25 * height) - (5 * age) + 5
+        bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5
     elif sex == 'F':
-        BMR = (10 * weight) + (6.25 * height) - (5 * age) - 161
+        bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161
     else:
         raise ValueError("Invalid sex")
-    return BMR
+    return bmr
