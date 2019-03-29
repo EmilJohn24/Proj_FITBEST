@@ -1,9 +1,9 @@
 conversion_lexicon = {
-    'lb': 1/2.2,
+    'lb': 0.45,
     'ft': 0.3,
     "'" : 0.3,
-    '"' : 1/254,
-    'in': 1/254
+    '"' : 0.00393700787,
+    'in': 0.00393700787
 }
 
 
@@ -18,15 +18,20 @@ def lexical_metric_conversion(value: str):
             running_digit += c
             if len(running_unit) > 0:
                 tokens.append(running_unit)
+                running_unit = ""
         else:
             running_unit += c
             if len(running_digit) > 0:
                 tokens.append(float(running_digit))
-
+                running_digit = ""
+    tokens.append(running_unit)
+    print(tokens)
     for index, token in enumerate(tokens):
         if isinstance(token, str):
             tokens[index - 1] *= conversion_lexicon[token]
-    return ''.join(tokens)
+            print("Converting...")
+            del tokens[index]
+    return sum(tokens)
 
 
 def calculate_bmi(weight, height):
