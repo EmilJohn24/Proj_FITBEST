@@ -44,13 +44,19 @@ def login(user_info):
         login(user_info)
 
 
-def write_user_data(user_info):
+def write_user_data(user_info: dict):
+    """
+    Updates the user's data file according to the data currently cached in the program.
+    """
     user_file = open(f"Users\\{user_info['User']}\\user.data", 'w')
     for label,data in user_info.items():
         user_file.write(f"{label}:{data}\n")
 
 
-def fetch_user_info(username):
+def fetch_user_info(username) -> dict:
+    """
+        Retrieves a user's data from the filesystem
+    """
     lines = open(f"Users\\{username}\\user.data", 'r').readlines()
     user_info = {}
     for line in lines:
