@@ -13,6 +13,7 @@ def new_user_data(user_info):
                 Chrome\Application\chrome.exe" https://www.vertex42.com/ExcelTemplates/Images/body-mass-index-chart.gif')
     print("Use the image as a guide...")
     desired_weight = input("What is your desired weight: ")
+    days = input("When do you want to achieve this?")
     user_info['Weight'] = weight
     user_info['Height'] = height
     user_info['Sex'] = sex
@@ -20,5 +21,6 @@ def new_user_data(user_info):
     user_info['BMI'] = calculate_bmi(weight, height)
     user_info['BMR'] = calculate_bmr(weight, height, sex, age)
     user_info['DesiredWeight'] = desired_weight
+    user_info['Goal Date'] = days
     write_user_data(user_info)
 
