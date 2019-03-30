@@ -36,7 +36,7 @@ Bacon average grilled,150 calories,380 calories,Med-High
 Beef (roast),300 calories,280 calories,Medium
 Beef burgers frozen,320 calories,280 calories,Med-High
 Chicken,220 calories,200 calories,Medium
-Cockles    50 calories,50 calories,Low
+Cockles    50 calories,50 calories,Low,
 Cod fresh,150 calories,100 calories,Low calorie
 Cod chip shop food,400 calories,200 calories,Med-High
 Crab fresh,200 calories,110 calories,low calorie
@@ -44,8 +44,8 @@ Duck roast,400 calories,430 calories,High
 
 --
 Snacks
-Fish cake,90 calories per cake,200 calories,Medium
-Fish fingers,50 calories per piece,220 calories,Medium
+Fish cake,90 calories (cake),200 calories,Medium
+Fish fingers,50 calories (piece),220 calories,Medium
 Gammon,320 calories,280 calories,Med-High
 Haddock fresh,200 calories,110 calories,Low calorie
 Halibut fresh,220 calories,125 calories,Low calorie
@@ -58,12 +58,12 @@ Liver pate,150 calories,300 calories,Medium
 Lamb (roast),300 calories,300 calories,Med-High
 Lobster boiled,200 calories,100 calories,Low calorie
 Luncheon meat,300 calories,400 calories,High
-Mackeral,320 calories,300 calories,Medium
+Mackerel,320 calories,300 calories,Medium
 Mussels,90 calories,90 calories,Low-Med
 Pheasant roast,200 calories,200 calories,Medium
 Pilchards (tinned),140 calories,140 calories,Medium
 Prawns,180 calories,100 calories,Low- Med
-Pork,,320 calories,290 calories,Med-High
+Pork,320 calories,290 calories,Med-High
 Pork pie,320 calories,450 calories,High
 Rabbit,200 calories,180 calories,Medium
 Salmon fresh,220 calories,180 calories,Medium
@@ -133,7 +133,7 @@ Watercress,5 calories,20 calories,Low calorie
 --
 Dairy
 Cheese average,110 calories (25g),440 calories,High
-Cheddar types average reduced fat,130,260 calories,Medium
+Cheddar types average reduced fat,130 calories,260 calories,Medium
 Cheese spreads average,90 calories,270,Medium
 Cottage cheese low fat,40 calories,80 calories,low - med
 Cottage cheese,49 calories,98 calories,Low calorie
@@ -147,9 +147,9 @@ Eggs ( 1 average size),90 calories,150 calories,Medium
 Eggs fried,120 calories,180 calories,Med-High
 Fromage frais,125 calories,125 calories,Low calorie
 Ice cream,200 calories,180 calories,Medium
-Milk whole,175 calories (250ml/half pint),70 calories,Med-High
-Milk semi-skimmed,125 calories (250ml/half pint),50 calories,Medium
-Milk skimmed,95 calories (250ml/half pint),38 calories,Low calorie
+Milk whole,175 calories (250ml),70 calories,Med-High
+Milk semi-skimmed,125 calories (250ml),50 calories,Medium
+Milk skimmed,95 calories (250ml),38 calories,Low calorie
 Milk Soya,90 calories,36 calories,Low calorie
 Mousse flavored,120 calories,140 calories,Medium
 Omelette with cheese,300 calories,266 calories,Medium
@@ -183,51 +183,51 @@ Toffee,100 calories,400 calories,High
 
 --
 Fruit
-Apple (1 average),44 calories,10.5,85 %
-Apple cooking,35 calories,9,88 %
-Apricot,30 calories,6.7,85 %
-Avocado,150 calories,2,60 %
-Banana,107 calories,26,75 %
-Blackberries each, 1 calorie,0.2,85 %
-Blackcurrant each,1.1 calorie,0.25,77 %
-Blueberries  (new) 100g,49 calories ( 100g ),15 g,81 %
-Cherry each,2.4 calories,0.6,83 %
-Clementine,24 calories,5,66 %
-Currants,5 calories,1.4,16 %
-Damson,28 calories,7.2,70 %
-One average date 5g,5 calories,1.2,14 %
-Dates with inverted sugar 100g,250 calories,63,12 %
-Figs,10 calories,2.4,24 %
-Gooseberries,2.6 calories,0.65,80 %
-Grapes 100g Seedless,50 calories,15,82 %
-one average Grape 6g,3 calories,0.9,82 %
-Grapefruit whole,100 calories,23,65 %
-Guava,24 calories,4.4,85 %
-Kiwi,34 calories,8,75 %
-Lemon,20 calories,3.4,85 %
-Lychees,3 calories,0.7,80 %
-Mango,40 calories,9.5,80 %
-Melon Honeydew (130g),36 calories,9,90 %
-Melon Canteloupe (130g),25 calories,6,93 %
-Nectarines,42 calories,9,80 %
-Olives,6.8 calories,trace,63 %
-Orange average,35 calories,8.5,73 %
-Orange large 350g,100 calories,22g,75 %
-Papaya Diced (small handful),67 calories  (20g),17g,-
-Passion Fruit,30 calories,3,50 %
-Paw Paw,28 calories,6,70 %
-Peach,35 calories,7,80 %
-Pear,45 calories,12,77 %
-Pineapple,50 calories,12,85 %
-Plum,25 calories,6,79 %
-Prunes,9 calories,2.2,37 %
-Raisins,5 calories,1.4,13 %
-Raspberries each,1.1 calories,0.2,87 %
-Rhubarb,8 calories,0.8,95 %
-Satsuma one average 112g,29 calories,6.5,88 %
-Satsumas 100g,35 calories,8.5,88 %
-Strawberries (1 average),2.7 calories,0.6,90 %
-Sultanas,5 calories,1.4,16 %
-Tangerine,26 calories,6,60 %
-Tomatoes (1 average size),9 calories,2.2,93 %
-Tomatoes Cherry (1 average size),2 calories,0.5,90 %
+Apple (1 average),44 calories,10.5,85%
+Apple cooking,35 calories,9,88%
+Apricot,30 calories,6.7,85%
+Avocado,150 calories,2,60%
+Banana,107 calories,26,75%
+Blackberries each, 1 calorie,0.2,85%
+Blackcurrant each,1.1 calorie,0.25,77%
+Blueberries  (new) 100g,49 calories ( 100g ),,81%
+Cherry each,2.4 calories,0.6,83%
+Clementine,24 calories,5,66%
+Currants,5 calories,1.4,16%
+Damson,28 calories,7.2,70%
+One average date 5g,5 calories,1.2,14%
+Dates with inverted sugar 100g,250 calories,63,12%
+Figs,10 calories,2.4,24%
+Gooseberries,2.6 calories,0.65,80%
+Grapes 100g Seedless,50 calories,15,82%
+one average Grape 6g,3 calories,0.9,82%
+Grapefruit whole,100 calories,23,65%
+Guava,24 calories,4.4,85%
+Kiwi,34 calories,8,75%
+Lemon,20 calories,3.4,85%
+Lychees,3 calories,0.7,80%
+Mango,40 calories,9.5,80%
+Melon Honeydew (130g),36 calories,9,90%
+Melon Canteloupe (130g),25 calories,6,93%
+Nectarines,42 calories,9,80%
+Olives,6.8 calories,,63%
+Orange average,35 calories,8.5,73%
+Orange large 350g,100 calories,,75%
+Papaya Diced (small handful),67 calories  (20g),,-
+Passion Fruit,30 calories,3,50%
+Paw Paw,28 calories,6,70%
+Peach,35 calories,7,80%
+Pear,45 calories,12,77%
+Pineapple,50 calories,12,85%
+Plum,25 calories,6,79%
+Prunes,9 calories,2.2,37%
+Raisins,5 calories,1.4,13%
+Raspberries each,1.1 calories,0.2,87%
+Rhubarb,8 calories,0.8,95%
+Satsuma one average 112g,29 calories,6.5,88%
+Satsumas 100g,35 calories,8.5,88%
+Strawberries (1 average),2.7 calories,0.6,90%
+Sultanas,5 calories,1.4,16%
+Tangerine,26 calories,6,60%
+Tomatoes (1 average size),9 calories,2.2,93%
+Tomatoes Cherry (1 average size),2 calories,0.5,90%
