@@ -4,6 +4,7 @@ from user import write_user_data
 
 
 def new_user_data(user_info):
+    print("Please add the proper units to your height and weight")
     height = lexical_metric_conversion(input("What is your height: "))
     weight = lexical_metric_conversion(input("What is your weight: "))
     sex = input("What is your sex(M/F): ")
@@ -17,7 +18,7 @@ def new_user_data(user_info):
     user_info['Sex'] = sex
     user_info['Age'] = age
     user_info['BMI'] = calculate_bmi(weight, height)
-    user_info['BMR'] = calculate_bmr(weight, height, age, sex)
+    user_info['BMR'] = calculate_bmr(weight, height, sex, age)
     user_info['DesiredWeight'] = desired_weight
     write_user_data(user_info)
 

@@ -46,12 +46,12 @@ def login(user_info):
 
 def write_user_data(user_info):
     user_file = open(f"Users\\{user_info['User']}\\user.data", 'w')
-    for label, data in user_info.items():
-        user_file.write(f"{label}:{data}")
+    for label,data in user_info.items():
+        user_file.write(f"{label}:{data}\n")
 
 
 def fetch_user_info(username):
-    lines = open(f"Users\\{username}", 'r').readlines()
+    lines = open(f"Users\\{username}\\user.data", 'r').readlines()
     user_info = {}
     for line in lines:
         [label, data] = line.split(":")

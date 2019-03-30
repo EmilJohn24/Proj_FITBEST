@@ -1,4 +1,7 @@
 conversion_lexicon = {
+    'kg': 1,
+    'm': 1,
+    'cm': 0.01,
     'lb': 0.45,
     'ft': 0.3,
     "'": 0.3,
