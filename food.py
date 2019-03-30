@@ -1,9 +1,11 @@
 def search_food(query:str):
     food_dict = load_food()
     results = []
-    for item in food_dict.items():
+    query = query.lower().strip()
+    for item in food_dict.keys():
+        item = item.lower().strip()
         if not item.find(query) == -1:
-            results.append(query)
+            results.append(item)
     return results
     
 
