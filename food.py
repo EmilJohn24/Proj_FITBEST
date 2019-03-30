@@ -1,3 +1,11 @@
+def search_food(query:str, food_dict=load_food()):
+    results = []
+    for item in food_dict.items():
+        if not item.find(query) == -1:
+            results.append(query)
+    return results
+    
+
 def calorie_parser(calorie: str):
     calorie = calorie.strip()
     explorer = calorie.__iter__()
