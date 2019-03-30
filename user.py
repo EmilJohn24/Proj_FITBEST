@@ -1,17 +1,15 @@
 import os
 
-
 conversion_lexicon = {
-    'lb': 1/2.2,
+    'lb': 0.45,
     'ft': 0.3,
     "'" : 0.3,
-    '"' : 1/254,
-    'in': 1/254
+    '"': 0.00393700787,
+    'in': 0.00393700787
 }
 
 
 def lexical_metric_conversion(value: str):
-    result = 0
     tokens = []
     running_digit = ""
     running_unit = ""
@@ -29,7 +27,8 @@ def lexical_metric_conversion(value: str):
     for index, token in enumerate(tokens):
         if isinstance(token, str):
             tokens[index - 1] *= conversion_lexicon[token]
-    return ''.join(tokens)
+            del tokens[index]
+    return str(sum(tokens))
 
 
 def get_user_data():
@@ -78,4 +77,4 @@ def fetch_user_info(username):
     for line in lines:
         [label, data] = line.split(":")
         user_info[label] = data
-
+    return user_info
