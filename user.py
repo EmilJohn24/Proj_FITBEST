@@ -5,6 +5,7 @@ def get_user_data():
     users = open('user.txt', 'r').readlines()
     userbase = dict()
     for user in users:
+        user = user.strip('\n')
         data = user.split(',')
         userbase[data[0]] = data[1]
     return userbase
@@ -13,14 +14,22 @@ def get_user_data():
 def signup():
     username = input("Enter Username: ")
     password = input("Enter Password: ")
+    while not _create_account(username, password):
+        signup()
+        return
+
+
+def _create_account(username, password):
     users = open('user.txt', 'a')
     userbase = get_user_data()
     if username not in userbase.keys():
         users.write("\n{0},{1}".format(username, password))
         os.system(f"mkdir Users\\{username}")
+        return True
+
     else:
         print("Username already taken")
-        signup()
+        return False
 
 
 def login(user_info):
@@ -36,7 +45,7 @@ def login(user_info):
 
 
 def write_user_data(user_info):
-    user_file = open(f"Users\\{user_info['User']}", 'w')
+    user_file = open(f"Users\\{user_info['User']}\\user.data", 'w')
     for label, data in user_info.items():
         user_file.write(f"{label}:{data}")
 
