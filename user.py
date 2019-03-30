@@ -1,35 +1,5 @@
 import os
 
-conversion_lexicon = {
-    'lb': 0.45,
-    'ft': 0.3,
-    "'" : 0.3,
-    '"': 0.00393700787,
-    'in': 0.00393700787
-}
-
-
-def lexical_metric_conversion(value: str):
-    tokens = []
-    running_digit = ""
-    running_unit = ""
-    # Split value to token
-    for c in value:
-        if c.isdigit() or c == '.':
-            running_digit += c
-            if len(running_unit) > 0:
-                tokens.append(running_unit)
-        else:
-            running_unit += c
-            if len(running_digit) > 0:
-                tokens.append(float(running_digit))
-
-    for index, token in enumerate(tokens):
-        if isinstance(token, str):
-            tokens[index - 1] *= conversion_lexicon[token]
-            del tokens[index]
-    return str(sum(tokens))
-
 
 def get_user_data():
     users = open('user.txt', 'r').readlines()
