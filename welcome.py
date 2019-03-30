@@ -1,5 +1,6 @@
 from fitness_calc import *
 import os
+from user import write_user_data
 
 
 def new_user_data(user_info):
@@ -18,4 +19,5 @@ def new_user_data(user_info):
     user_info['BMI'] = calculate_bmi(weight, height)
     user_info['BMR'] = calculate_bmr(weight, height, age, sex)
     user_info['DesiredWeight'] = desired_weight
+    write_user_data(user_info)
 
