@@ -5,13 +5,14 @@
 
 """
 
+
 def search_food(query: str):
     food_dict = load_food()
     results = []
     query = query.lower().strip()
     for item in food_dict.keys():
-        item = item.lower().strip()
-        if not item.find(query) == -1:
+        search_item = item.lower().strip()
+        if not search_item.find(query) == -1:
             results.append(item)
     return results
     
