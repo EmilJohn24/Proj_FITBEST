@@ -71,5 +71,5 @@ def max_calories_per_day(days, bmr, initial_weight, final_weight):
     """
     delta_weight = final_weight - initial_weight
     req_calorie_loss = kilo_to_calorie(delta_weight) / days # disregarding BMR
-    return req_calorie_loss - bmr
+    return bmr - req_calorie_loss
 
