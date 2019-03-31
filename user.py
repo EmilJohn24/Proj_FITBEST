@@ -53,7 +53,7 @@ def write_user_data(user_info: dict):
     Updates the user's data file according to the data currently cached in the program.
     """
     user_file = open(f"Users\\{user_info['User']}\\user.data", 'w')
-    for label,data in user_info.items():
+    for label, data in user_info.items():
         user_file.write(f"{label}:{data}\n")
 
 
