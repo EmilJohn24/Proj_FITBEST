@@ -9,6 +9,13 @@ conversion_lexicon = {
     'in': 0.00393700787
 }
 
+def kilo_to_calorie(weight):
+    """
+        Important calculations:
+            https://www.mayoclinic.org/healthy-lifestyle/weight-loss/in-depth/calories/art-20048065
+            3500 calories per 0.45 kg
+    """
+    return weight * (3500 / 0.45)
 
 def lexical_metric_conversion(value: str):
     tokens = []
@@ -52,3 +59,17 @@ def calculate_bmr(weight, height, sex, age):
     else:
         raise ValueError("Invalid sex")
     return bmr
+
+
+def max_calories_per_day(days, bmr, initial_weight, final_weight):
+    """
+        Returns the maximum number of consumable calories per day to attain
+        final weight within the number of days required
+
+        Notes:
+            BMR refers to the amount of calories a person naturally losses per day
+    """
+    delta_weight = final_weight - initial_weight
+    req_calorie_loss = kilo_to_calorie(delta_weight) / days # disregarding BMR
+    return req_calorie_loss - bmr
+
