@@ -1,4 +1,4 @@
-import food
+import fitness_calc
 import datetime
 _set_date = datetime.datetime.now()
 """
@@ -9,8 +9,10 @@ _set_date = datetime.datetime.now()
     type is either food or weight
 """
 
+
 def create_date(date_input):
-    return datetime.strptime(date_input, "%b/%d/%Y")
+    return datetime.datetime.strptime(date_input, "%m/%d/%Y")
+
 
 def snap_date_to_now():
     global _set_date
@@ -24,7 +26,7 @@ def change_set_date(year, month, day):
 
 def get_set_date_text():
     global _set_date
-    return _set_date.strftime("%Y-%b-%d")
+    return _set_date.strftime("%Y-%m-%d")
 
 
 def get_time_text():
@@ -46,7 +48,7 @@ def add_food_to_set_date(food_name, amount, mode, user_info):
         amount: amount of food (according to the unit in the database
     """
     date_file = access_date_file(user_info, 'a')
-    date_file.write(f"food:{food_name},{amount},{mode}")
+    date_file.write(f"food:{food_name},{amount},{mode}\n")
     date_file.close()
 
 
@@ -59,7 +61,7 @@ def add_new_weight(weight, user_info):
     """
     date_file = access_date_file(user_info, 'a')
     snap_date_to_now()
-    date_file.write(f"weight:{weight}")
+    date_file.write(f"weight:{weight}\n")
 
 
 def _get_date_data(user_info):
@@ -72,7 +74,7 @@ def _get_date_data(user_info):
         if data_type == "weight":
             weight = float(data)
         elif data_type == "food":
-            food_list.append(data)
+            food_list.append(data.strip('\n').strip())
     return weight, food_list
 
 
@@ -86,5 +88,8 @@ def get_allowed_calories_today(user_info):
     BMR = float(user_info["BMR"])
     date_diff = goal_date - _set_date
     days_diff = date_diff.days
+    return fitness_calc.max_calories_per_day(days_diff, BMR,
+                                             float(user_info["Weight"]), float(user_info["Desired Weight"]))
+
 
 
