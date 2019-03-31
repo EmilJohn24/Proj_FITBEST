@@ -1,4 +1,11 @@
-def search_food(query:str):
+"""
+    Important calculations:
+        https://www.mayoclinic.org/healthy-lifestyle/weight-loss/in-depth/calories/art-20048065
+        3500 calories per 0.45 kg
+
+"""
+
+def search_food(query: str):
     food_dict = load_food()
     results = []
     query = query.lower().strip()
@@ -30,9 +37,8 @@ def calorie_parser(calorie: str):
     return int(calorie_count), unit_calorie.lstrip('(')
 
 
-
-
 _food_cache = dict()
+
 
 def load_food():
     global _food_cache
