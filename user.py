@@ -32,7 +32,11 @@ def _create_account(username, password):
         return False
 
 
-def login(user_info):
+def login(user_info: dict):
+    """
+        Asks the user for a username and password (in the console) and stores
+        his login at an externally-defined dictionary
+    """
     username = input("Enter Username: ")
     password = input("Enter Password: ")
     userbase = get_user_data()
