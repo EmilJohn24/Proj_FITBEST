@@ -9,6 +9,7 @@ conversion_lexicon = {
     'in': 0.00393700787
 }
 
+
 def kilo_to_calorie(weight):
     """
         Important calculations:
@@ -16,6 +17,7 @@ def kilo_to_calorie(weight):
             3500 calories per 0.45 kg
     """
     return weight * (3500 / 0.45)
+
 
 def lexical_metric_conversion(value: str):
     tokens = []
@@ -34,7 +36,6 @@ def lexical_metric_conversion(value: str):
                 tokens.append(float(running_digit))
                 running_digit = ""
     tokens.append(running_unit)
-    print(tokens)
     for index, token in enumerate(tokens):
         if isinstance(token, str):
             tokens[index - 1] *= conversion_lexicon[token]
