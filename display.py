@@ -16,6 +16,8 @@ def main_menu(user_info):
     choice = input("\t> ")
     if choice == '1':
         user.signup()
+        print("We're preparing your account...")
+        time.sleep(5)
         print("Sign up complete...")
         time.sleep(5)
         # os.system("cls")
@@ -29,6 +31,15 @@ def main_menu(user_info):
         print("Invalid Output...")
         main_menu(user_info)
     return
+
+
+def add_food_to_database(user_info):
+    name = input("Name of the food: ")
+    unit = input("Unit of calories")
+    calorie = float(input("Number of calories per unit"))
+    food.add_food_to_database(name, unit, calorie)
+    foodbase = food.load_food()
+    return foodbase[name]
 
 
 def display_food(name, counter):
@@ -48,7 +59,15 @@ def search_food_menu(user_info):
         return results[choice - 1]
     else:
         print("No results found.")
-        return None
+        print("Would you like to add this do our database? (Y/N)")
+        choice = input("\t>")
+        if choice == 'Y':
+            return add_food_to_database(user_info)
+        elif choice == 'N':
+            return None
+        else:
+            print("Invalid choice")
+            return search_food_menu(user_info)
 
 
 def add_food_menu(user_info):
@@ -84,16 +103,16 @@ def display_info(user_info):
             label_end = '\t|\t'
         else:
             label_end = '\n'
-        print(f"{label}: {info}", end=label_end)
+
+        print(f"{label}: {info[0:8]:<30}", end=label_end)
         side_by_side = not side_by_side
 
 
-
-
 def food_menu(user_info):
-    _,food_data = day_tracking._get_date_data(user_info)
+    _, food_data = day_tracking._get_date_data(user_info)
     counter = 1
     print("Max Calories: {0:.2f}".format(day_tracking.get_allowed_calories_today(user_info)))
+    print("Remaining Calories: {0:.2f}".format(day_tracking.get_remaining_calories_today(user_info)))
     for name, params in food_data.items():
         calorie_amount = food.get_calorie(name, float(params["Amount"]))
         print("{0}. {1} | {2} | {3}".format(counter, name, params["Amount"], calorie_amount))
