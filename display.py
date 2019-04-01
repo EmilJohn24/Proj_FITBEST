@@ -60,7 +60,7 @@ def add_food_menu(user_info):
 def food_menu(user_info):
     _,food_data = day_tracking._get_date_data(user_info)
     counter = 1
-    print("Max Calories: {0}".format(day_tracking.get_allowed_calories_today(user_info)))
+    print("Max Calories: {0:.2f}".format(day_tracking.get_allowed_calories_today(user_info)))
     for name, params in food_data.items():
         calorie_amount = food.get_calorie(name, float(params["Amount"]))
         print("{0}. {1} | {2} | {3}".format(counter, name, params["Amount"], calorie_amount))
@@ -68,7 +68,15 @@ def food_menu(user_info):
     print("Food Menu:")
     print("What would you like to do?")
     print("\t 1. Add New Food")
+    print("\t X. Go Back")
     choice = input("\t> ")
+    if choice == '1':
+        add_food_menu(user_info)
+    elif choice == 'X':
+        user_menu(user_info)
+    else:
+        print("Invalid choice")
+        food_menu(user_info)
 
 
 def user_menu(user_info):
@@ -84,4 +92,7 @@ def user_menu(user_info):
         food_menu(user_info)
     if choice == '2':
         add_food_menu(user_info)
+    else:
+        print("Invalid choice.")
+        user_menu(user_info)
 
