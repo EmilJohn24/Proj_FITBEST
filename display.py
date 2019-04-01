@@ -62,7 +62,6 @@ def add_food_to_database(user_info):
     return name
 
 
-@clear_screen
 def display_food(name, counter):
     food_data = food.get_food_data(name)
     calories, unit = food_data["Unit Calorie"], food_data["Unit"]
@@ -183,14 +182,18 @@ def food_menu(user_info):
 
 
 def change_date_menu(user_info):
-    date = input("Type in the new date: ")
-    try:
-        new_date = day_tracking.create_date(date)
-        day_tracking.change_set_date_with_datetime(new_date)
-        user_menu(user_info)
-    except ValueError:
-        print("Invalid date.")
-        change_date_menu(user_info)
+    date = input("Type in the new date (type 'now' to return to current date): ")
+    if date == 'now':
+        day_tracking.snap_date_to_now()
+    else:
+        try:
+            new_date = day_tracking.create_date(date)
+            day_tracking.change_set_date_with_datetime(new_date)
+        except ValueError:
+            print("Invalid date.")
+            change_date_menu(user_info)
+    user_menu(user_info)
+
 
 
 @clear_screen
@@ -205,6 +208,7 @@ def user_menu(user_info):
     print("\t3. Record New Weight")
     print("\t4. Change All Personal Info")
     print("\t5. Check another date.")
+    print("\tX. Exit")
     choice = input("\t> ")
     if choice == '1':
         food_menu(user_info)
@@ -216,6 +220,8 @@ def user_menu(user_info):
         welcome.new_user_data(user_info)
     elif choice == '5':
         change_date_menu(user_info)
+    elif choice == 'X':
+        exit()
     else:
         print("Invalid choice.")
         user_menu(user_info)
