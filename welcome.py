@@ -1,7 +1,15 @@
 from fitness_calc import *
-import os
 from user import write_user_data
 import day_tracking
+from functools import wraps
+
+def clear_screen(menu_func):
+    @wraps(menu_func)
+    def clear_wrapper(*args, **kwargs):
+        os.system("cls")
+        time.sleep(2)
+        return menu_func(*args, **kwargs)
+    return clear_wrapper
 
 
 def input_date(prompt, error_msg):
@@ -34,7 +42,9 @@ def input_sex():
         return sex
 
 
+@clear_screen
 def new_user_data(user_info):
+    print("Edit Your Data:")
     print("Please add the proper units to your height and weight")
     height = lexical_metric_conversion(input("What is your height: "))
     weight = lexical_metric_conversion(input("What is your weight: "))

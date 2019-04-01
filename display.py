@@ -12,6 +12,7 @@ def clear_screen(menu_func):
     @wraps(menu_func)
     def clear_wrapper(*args, **kwargs):
         os.system("cls")
+        time.sleep(2)
         return menu_func(*args, **kwargs)
     return clear_wrapper
 
@@ -127,6 +128,19 @@ def display_info(user_info):
 
 
 @clear_screen
+def recommender(user_info):
+    food_base = food.load_food()
+    print("The FITBEST algorithm recommends the following food: ")
+    recommendations = food.get_recommendations(user_info, 10)
+    for recommendation in recommendations:
+        food_data = food_base[recommendation]
+        print(">> {0}: {1} calories per {2} [{3}]".format(
+            recommendation, food_data["Unit Calorie"], food_data["Unit"], food_data["Mode"]))
+    a = input("Press enter to leave...")
+    return
+
+
+@clear_screen
 def food_menu(user_info):
     try:
         _, food_data = day_tracking._get_date_data(user_info)
@@ -143,10 +157,13 @@ def food_menu(user_info):
         print("Food Menu:")
         print("What would you like to do?")
         print("\t 1. Add New Food")
+        print("\t 2. Get some recommendations")
         print("\t X. Go Back")
         choice = input("\t> ")
         if choice == '1':
             add_food_menu(user_info)
+        elif choice == '2':
+            recommender(user_info)
         elif choice == 'X':
             user_menu(user_info)
         else:
@@ -157,7 +174,6 @@ def food_menu(user_info):
     user_menu(user_info)
 
 
-@clear_screen
 def change_date_menu(user_info):
     date = input("Type in the new date: ")
     try:

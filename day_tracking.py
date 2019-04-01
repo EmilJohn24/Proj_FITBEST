@@ -1,6 +1,7 @@
 import fitness_calc
 import datetime
 import food
+import user
 _set_date = datetime.datetime.now()
 """
     Food file Format:
@@ -9,6 +10,18 @@ _set_date = datetime.datetime.now()
     mode is an element of {Breakfast, Lunch, Dinner, Snacks}
     type is either food or weight
 """
+
+
+def get_other_user_food():
+    other_users = user.get_user_data()
+    for username in other_users.keys():
+        temp_user_info = dict()
+        temp_user_info['User'] = username
+        try:
+            _, food_data = _get_date_data(temp_user_info)
+            yield food_data.keys()
+        except FileNotFoundError:
+            continue
 
 
 def create_date(date_input):
@@ -68,6 +81,10 @@ def add_new_weight(weight, user_info):
     date_file = access_date_file(user_info, 'a')
     snap_date_to_now()
     date_file.write(f"weight:{weight}\n")
+
+
+def get_date_data(user_info):
+    return _get_date_data(user_info)
 
 
 def _get_date_data(user_info):

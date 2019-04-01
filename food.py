@@ -1,3 +1,4 @@
+
 """
     Important calculations:
         https://www.mayoclinic.org/healthy-lifestyle/weight-loss/in-depth/calories/art-20048065
@@ -5,11 +6,46 @@
 
 """
 
+import day_tracking
+import random
+
 
 def add_food_to_database(name, calories, unit):
     with open("food.csv", 'a') as foodbase:
         _food_cache.clear()
         foodbase.write("\n{0},{1}({2}),,,".format(name, calories, unit))
+
+
+def find_match(a, b):
+    a, b = set(a), set(b)
+    return len(a.intersection(b)) > 0
+
+
+def get_recommendations(user_info, count) -> list:
+    _, food_list = day_tracking.get_date_data(user_info)
+    food_list = food_list.keys()
+    other_user = day_tracking.get_other_user_food()
+    food_bin = []
+    recommendations = set()
+    try:
+        while True:
+            other_food_list = next(other_user)
+            if find_match(food_list, other_food_list):
+                for matching_food in other_food_list:
+                    food_bin.append(matching_food)
+    except StopIteration:
+        i = 0
+        while i <= count:
+            index = random.randint(0, len(food_bin) - 1)
+            if not food_bin[index] in recommendations:
+                recommendations.add(food_bin[index])
+            i += count
+        remaining = count - len(recommendations)
+        food_base = list(load_food().keys())
+        for j in range(remaining):
+            index_b = random.randint(0, len(food_base) - 1)
+            recommendations.add(food_base[index_b])
+        return recommendations
 
 
 def get_food_data(name):
@@ -78,6 +114,7 @@ def load_food():
                 new_food["Unit Calorie"], new_food["Unit"] = calorie_parser(cols[1])
                 new_food["Status"] = cols[3]
                 new_food["Mode"] = mode
+                new_food["Weight"] = 1
                 name = cols[0]
                 food_dict[name] = new_food
         _food_cache = food_dict
