@@ -94,4 +94,5 @@ def get_allowed_calories_today(user_info):
                                              float(user_info["Weight"]), float(user_info["Desired Weight"]))
 
 
-
+def get_remaining_calories_today(user_info):
+    pass
