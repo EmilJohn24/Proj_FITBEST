@@ -67,14 +67,16 @@ def add_new_weight(weight, user_info):
 def _get_date_data(user_info):
     date_file = access_date_file(user_info, 'r')
     data_col = date_file.readlines()
-    food_list = []
+    food_list = {}
     weight = int()
     for line in data_col:
         data_type, data = line.split(':')
         if data_type == "weight":
             weight = float(data)
         elif data_type == "food":
-            food_list.append(data.strip('\n').strip())
+            food_data = data.split(',')
+            food_name, amount, mode = food_data[0], float(food_data[1]), food_data[2].strip('\n')
+            food_list[food_name] = {"Amount": amount, "Mode": mode}
     return weight, food_list
 
 
