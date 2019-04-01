@@ -76,6 +76,12 @@ def weight_menu(user_info):
         user_menu(user_info)
 
 
+def display_info(user_info):
+    info_dict = user.fetch_user_info(user_info)
+    for label, info in info_dict:
+        print(f"{label}: {info}")
+
+
 def food_menu(user_info):
     _,food_data = day_tracking._get_date_data(user_info)
     counter = 1
@@ -111,12 +117,13 @@ def change_date_menu(user_info):
 
 def user_menu(user_info):
     print("Hello, {0}".format(user_info["User"]))
+    display_info(user_info)
     print("What would you like to do?")
     print(">> Current Viewing Date: {0}".format(day_tracking.get_set_date_text()))
     print("\t1. Check Food Balance")
     print("\t2. Add New Food")
     print("\t3. Record New Weight")
-    print("\t4.Change Personal Info")
+    print("\t4. Change All Personal Info")
     print("\t5. Check another date.")
     choice = input("\t> ")
     if choice == '1':
