@@ -9,11 +9,12 @@
 def add_food_to_database(name, calories, unit):
     with open("food.csv", 'a') as foodbase:
         _food_cache.clear()
-        foodbase.write("{0},{1}({2}),,,")
+        foodbase.write("\n{0},{1}({2}),,,".format(name, calories, unit))
 
 
 def get_food_data(name):
-    return load_food()[name]
+    food_base = load_food()
+    return food_base[name]
 
 
 def get_calorie(name, amount=1):

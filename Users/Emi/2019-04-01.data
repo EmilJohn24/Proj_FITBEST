@@ -2,3 +2,5 @@ weight:32
 food:Banana,2.0,Breakfast
 food:Banana,2.0,Breakfast
 weight:80.0
+food:Ding,10.0,Breakfast
+food:Bagel ( 1 average ),2.0,Breakfast

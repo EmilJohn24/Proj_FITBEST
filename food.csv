@@ -36,7 +36,7 @@ Bacon average grilled,150 calories,380 calories,Med-High
 Beef (roast),300 calories,280 calories,Medium
 Beef burgers frozen,320 calories,280 calories,Med-High
 Chicken,220 calories,200 calories,Medium
-Cockles    50 calories,50 calories,Low,
+Cockles,50 calories,50 calories,Low,
 Cod fresh,150 calories,100 calories,Low calorie
 Cod chip shop food,400 calories,200 calories,Med-High
 Crab fresh,200 calories,110 calories,low calorie
@@ -234,3 +234,7 @@ Tomatoes Cherry (1 average size),2 calories,0.5,90%
 
 --
 Custom
+Ding,200.0(kg),,,
+Fatsy Juice,200.0(liters),,,
+Cruz,2000.0(kg),,,
+Fatsy Cruz,100000.0(love),,,
