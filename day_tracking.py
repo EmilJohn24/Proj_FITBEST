@@ -24,6 +24,11 @@ def change_set_date(year, month, day):
     _set_date = datetime.datetime(year, month, day)
 
 
+def change_set_date_with_datetime(date: datetime.datetime):
+    global _set_date
+    _set_date = date
+
+
 def get_set_date_text():
     global _set_date
     return _set_date.strftime("%Y-%m-%d")
