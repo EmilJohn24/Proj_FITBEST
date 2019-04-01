@@ -2,6 +2,9 @@ from fitness_calc import *
 from user import write_user_data
 import day_tracking
 from functools import wraps
+import os
+import time
+
 
 def clear_screen(menu_func):
     @wraps(menu_func)

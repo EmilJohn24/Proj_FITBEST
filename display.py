@@ -5,14 +5,22 @@ import time
 import day_tracking
 import food
 import fitness_calc
+from random import randint
 from functools import wraps
 
+def display_tip():
+    tips = open("tips.txt", 'r').readlines()
+    index = randint(0, len(tips) - 1)
+    print("Remember:", tips[index])
 
 def clear_screen(menu_func):
     @wraps(menu_func)
     def clear_wrapper(*args, **kwargs):
         os.system("cls")
+        display_tip()
+        print("Loading...")
         time.sleep(2)
+        os.system("cls")
         return menu_func(*args, **kwargs)
     return clear_wrapper
 
