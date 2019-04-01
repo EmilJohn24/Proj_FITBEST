@@ -61,6 +61,7 @@ def add_food_menu(user_info):
 def add_weight_menu(user_info):
     weight = float(fitness_calc.lexical_metric_conversion(input("Record your weight today: ")))
     day_tracking.add_new_weight(weight, user_info)
+    user_menu(user_info)
 
 
 def weight_menu(user_info):
@@ -77,9 +78,16 @@ def weight_menu(user_info):
 
 
 def display_info(user_info):
-    info_dict = user.fetch_user_info(user_info)
-    for label, info in info_dict:
-        print(f"{label}: {info}")
+    side_by_side = False
+    for label, info in user_info.items():
+        if side_by_side:
+            label_end = '\t|\t'
+        else:
+            label_end = '\n'
+        print(f"{label}: {info}", end=label_end)
+        side_by_side = not side_by_side
+
+
 
 
 def food_menu(user_info):
@@ -116,6 +124,7 @@ def change_date_menu(user_info):
 
 
 def user_menu(user_info):
+    user.fetch_user_info(user_info)
     print("Hello, {0}".format(user_info["User"]))
     display_info(user_info)
     print("What would you like to do?")
