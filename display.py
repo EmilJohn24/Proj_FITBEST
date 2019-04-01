@@ -103,6 +103,7 @@ def change_date_menu(user_info):
     try:
         new_date = day_tracking.create_date(date)
         day_tracking.change_set_date_with_datetime(new_date)
+        user_menu(user_info)
     except ValueError:
         print("Invalid date.")
         change_date_menu(user_info)
