@@ -1,5 +1,6 @@
 import fitness_calc
 import datetime
+import food
 _set_date = datetime.datetime.now()
 """
     Food file Format:
@@ -100,4 +101,9 @@ def get_allowed_calories_today(user_info):
 
 
 def get_remaining_calories_today(user_info):
-    pass
+    global _set_date
+    total = 0
+    _, food_data = _get_date_data(user_info)
+    for food_name, food_info in food_data.items():
+        total += food.get_calorie(food_name, food_info["Amount"])
+    return get_allowed_calories_today(user_info) - total

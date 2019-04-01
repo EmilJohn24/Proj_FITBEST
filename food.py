@@ -6,6 +6,12 @@
 """
 
 
+def add_food_to_database(name, calories, unit):
+    with open("food.csv", 'a') as foodbase:
+        _food_cache.clear()
+        foodbase.write("{0},{1}({2}),,,")
+
+
 def get_food_data(name):
     return load_food()[name]
 
