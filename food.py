@@ -6,6 +6,15 @@
 """
 
 
+def get_food_data(name):
+    return load_food()[name]
+
+
+def get_calorie(name, amount=1):
+    food_dict = load_food()
+    return float(food_dict[name]["Unit Calorie"]) * amount
+
+
 def search_food(query: str):
     food_dict = load_food()
     results = []
