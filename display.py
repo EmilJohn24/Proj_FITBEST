@@ -148,6 +148,28 @@ def recommender(user_info):
 
 
 @clear_screen
+def remove_food_menu(user_info):
+    try:
+        _, food_data = day_tracking._get_date_data(user_info)
+    except FileNotFoundError:
+        print("No food to display...")
+    if food_data:
+        names = []
+        for name, params in food_data.items():
+            calorie_amount = food.get_calorie(name, float(params["Amount"]))
+            print("{0}. {1} | {2} | {3}".format(counter, name, params["Amount"], calorie_amount))
+            names.append
+            counter += 1
+        choice = input("Pick the number of the item you would like removed: ")
+        try:
+            day_tracking.remove_food_from_set_date(food[int(choice)])
+        except:
+            print("Invalid choice...")
+            time.sleep(2)
+            remove_food_menu(user_info)
+
+
+@clear_screen
 def food_menu(user_info):
     try:
         _, food_data = day_tracking._get_date_data(user_info)
@@ -165,12 +187,15 @@ def food_menu(user_info):
         print("What would you like to do?")
         print("\t 1. Add New Food")
         print("\t 2. Get some recommendations")
+        print("\t 3. Remove New Food")
         print("\t X. Go Back")
         choice = input("\t> ")
         if choice == '1':
             add_food_menu(user_info)
         elif choice == '2':
             recommender(user_info)
+        elif choice == '3':
+            remove_food_menu(user_info)
         elif choice == 'X':
             user_menu(user_info)
         else:
