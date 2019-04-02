@@ -70,6 +70,13 @@ def add_food_to_set_date(food_name, amount, mode, user_info):
     date_file.write(f"food:{food_name},{amount},{mode}\n")
     date_file.close()
 
+def remove_food_from_set_date(food_name, user_info):
+    date_file = access_date_file(user_info, 'w')
+    _, food_list = _get_date_data(user_info)
+    del food_list[food_name]
+    for name, data in food_name.items():
+        add_food_to_set_date(food_name, data["Amount"], data["Mode"])
+    
 
 def add_new_weight(weight, user_info):
     """
