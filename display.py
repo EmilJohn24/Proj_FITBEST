@@ -112,6 +112,8 @@ def weight_menu(user_info):
     print("Weight Menu:")
     print("What would you like to do?")
     print("Set Date: {0}".format(day_tracking.get_set_date_text()))
+    latest_weight, _ = day_tracking.get_date_data(user_info)
+    print("\tRecorded Weight on Set Date: {0}".format(latest_weight))
     print("\t1. Add new weight recording to this date.")
     print("\tX. Go back")
     choice = input("\t>")
@@ -155,15 +157,15 @@ def remove_food_menu(user_info):
         print("No food to display...")
     if food_data:
         names = []
-        counter = 0
-        for name, params in food_data.items():
-            calorie_amount = food.get_calorie(name, float(params["Amount"]))
-            print("{0}. {1} | {2} | {3}".format(counter, name, params["Amount"], calorie_amount))
-            names.append
+        counter = 1
+        for named, params in food_data.items():
+            calorie_amount = food.get_calorie(named, float(params["Amount"]))
+            print("{0}. {1} | {2} | {3}".format(counter, named, params["Amount"], calorie_amount))
+            names.append(named)
             counter += 1
         choice = input("Pick the number of the item you would like removed: ")
         try:
-            day_tracking.remove_food_from_set_date(food_data[int(choice)])
+            day_tracking.remove_food_from_set_date(names[int(choice) - 1], user_info)
         except KeyError:
             print("Invalid choice...")
             time.sleep(2)
@@ -179,7 +181,10 @@ def food_menu(user_info):
     counter = 1
     print("Max Calories: {0:.2f}".format(day_tracking.get_allowed_calories_today(user_info)))
     if food_data:
-        print("Remaining Calories: {0:.2f}".format(day_tracking.get_remaining_calories_today(user_info)))
+        remaining_calories = day_tracking.get_remaining_calories_today(user_info)
+        print("Remaining Calories: {0:.2f}".format(remaining_calories))
+        if remaining_calories < 0:
+            print("\tStop Eating!!! You're out of calories today, but I'm not gonna stop you.")
         for name, params in food_data.items():
             calorie_amount = food.get_calorie(name, float(params["Amount"]))
             print("{0}. {1} | {2} | {3}".format(counter, name, params["Amount"], calorie_amount))
