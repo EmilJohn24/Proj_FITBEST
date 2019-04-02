@@ -86,7 +86,7 @@ def calorie_parser(calorie: str):
             unit_calorie += current_char
             current_char = next(explorer)
     except StopIteration:
-        unit_calorie = "100 g"
+        unit_calorie = "pieces" #default unit calorie
     return int(calorie_count), unit_calorie.lstrip('(')
 
 

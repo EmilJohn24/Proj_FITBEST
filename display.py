@@ -85,7 +85,7 @@ def search_food_menu(user_info):
         if choice == 'Y':
             return add_food_to_database(user_info)
         elif choice == 'N':
-            return None
+            user_menu(user_info)
         else:
             print("Invalid choice")
             return search_food_menu(user_info)
@@ -155,6 +155,7 @@ def remove_food_menu(user_info):
         print("No food to display...")
     if food_data:
         names = []
+        counter = 0
         for name, params in food_data.items():
             calorie_amount = food.get_calorie(name, float(params["Amount"]))
             print("{0}. {1} | {2} | {3}".format(counter, name, params["Amount"], calorie_amount))
@@ -162,8 +163,8 @@ def remove_food_menu(user_info):
             counter += 1
         choice = input("Pick the number of the item you would like removed: ")
         try:
-            day_tracking.remove_food_from_set_date(food[int(choice)])
-        except:
+            day_tracking.remove_food_from_set_date(food_data[int(choice)])
+        except KeyError:
             print("Invalid choice...")
             time.sleep(2)
             remove_food_menu(user_info)

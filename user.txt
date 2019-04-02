@@ -21,3 +21,5 @@ LOL,LOL
 Marky,Padz
 Marks,Padz
 Markz,Markz
+Teddy,123
+FishBoi,Fishy

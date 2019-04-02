@@ -15,6 +15,7 @@ def get_user_data():
 
 
 def signup():
+    print("Sign Up: ")
     username = input("Enter Username: ")
     password = input("Enter Password: ")
     while not _create_account(username, password):
@@ -35,14 +36,14 @@ def _create_account(username, password):
         print("Username already taken")
         return False
 
-
 def login(user_info: dict):
     """
         Asks the user for a username and password (in the console) and stores
         his login at an externally-defined dictionary
     """
-    username = input("Enter Username: ")
-    password = input("Enter Password: ")
+    print("Login: ")
+    username = input("\tEnter Username: ")
+    password = input("\tEnter Password: ")
     userbase = get_user_data()
 
     if (username, password) in userbase.items():
@@ -51,7 +52,7 @@ def login(user_info: dict):
         fetch_user_info(user_info)
 
     else:
-        print("Invalid login")
+        print("Invalid login...", end="\n\n")
         login(user_info)
 
 

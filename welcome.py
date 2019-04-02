@@ -38,11 +38,18 @@ def input_age(prompt, error_msg):
 
 def input_sex():
     sex = input("What is your sex (M/F)?")
-    if not sex == 'M' or sex == 'F':
+    if not sex == 'M' or not sex == 'F':
         print("Invalid Sex")
         return input_sex()
     else:
         return sex
+
+def input_desired_weight(message, errormsg, weight):
+    desired_weight = lexical_metric_conversion(input(message))
+    if float(weight) < float(desired_weight):
+        print(errormsg)
+        return input_desired_weight(message, errormsg, weight)
+    return desired_weight
 
 
 @clear_screen
@@ -50,14 +57,16 @@ def new_user_data(user_info):
     print("Edit Your Data:")
     print("Please add the proper units to your height and weight")
     height = lexical_metric_conversion(input("What is your height: "))
+    print("Weight converted to: {0} kg".format(height))
     weight = lexical_metric_conversion(input("What is your weight: "))
+    print("Weight converted to: {0} kg".format(weight))
     sex = input_sex()
     age = input_age("What is your age?", "Invalid age")
 
     os.system('start "C:\Program Files (x86)\Google\
                 Chrome\Application\chrome.exe" https://www.vertex42.com/ExcelTemplates/Images/body-mass-index-chart.gif')
     print("Use the image as a guide...")
-    desired_weight = lexical_metric_conversion(input("What is your desired weight (add unit): "))
+    desired_weight = input_desired_weight("What is your desired weight (add unit): ", "Weight must be lesser than your actual weight.", weight)
     date = input_date("When do you want to achieve this? (mm/dd/YYYY)", "Invalid Date")
     user_info['Weight'] = weight
     user_info['Height'] = height
