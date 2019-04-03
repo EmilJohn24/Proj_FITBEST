@@ -44,6 +44,7 @@ def input_sex():
         print("Invalid Sex")
         return input_sex()
 
+
 def input_desired_weight(message, errormsg, weight):
     desired_weight = lexical_metric_conversion(input(message))
     if float(weight) < float(desired_weight) or float(desired_weight) < 0:
@@ -52,7 +53,7 @@ def input_desired_weight(message, errormsg, weight):
     return desired_weight
 
 
-@clear_screen
+# @clear_screen
 def new_user_data(user_info):
     print("Edit Your Data:")
     print("Please add the proper units to your height and weight")
