@@ -8,10 +8,12 @@ import fitness_calc
 from random import randint
 from functools import wraps
 
+
 def display_tip():
     tips = open("tips.txt", 'r').readlines()
     index = randint(0, len(tips) - 1)
     print("Remember:", tips[index])
+
 
 def clear_screen(menu_func):
     @wraps(menu_func)
@@ -39,10 +41,9 @@ def main_menu(user_info):
         time.sleep(5)
         print("Sign up complete...")
         time.sleep(5)
-        # os.system("cls")
         main_menu(user_info)
     elif choice == '2':
-        user.login(user_info)
+        login(user_info)
         user.fetch_user_info(user_info)
         if len(user_info) == 1:
             welcome.new_user_data(user_info)
