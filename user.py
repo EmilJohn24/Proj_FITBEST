@@ -14,9 +14,6 @@ def get_user_data():
     return userbase
 
 
-
-
-
 def create_account(username, password):
     users = open('user.txt', 'a')
     userbase = get_user_data()
