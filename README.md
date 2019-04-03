@@ -5,5 +5,3 @@ A diet-tracking system<br>
 <p>
 Some user files with proper formatting have been added beforehand for testing
 </p>
-
-<h2> Fuck TAPOS NAAAAAAAAAAAAAAAA </h2>

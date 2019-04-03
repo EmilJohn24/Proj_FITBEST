@@ -38,7 +38,7 @@ def input_age(prompt, error_msg):
 
 def input_sex():
     sex = input("What is your sex (M/F)?")
-    if  sex == 'M' or sex == 'F':
+    if sex == 'M' or sex == 'F':
         return sex
     else:
         print("Invalid Sex")
@@ -53,7 +53,7 @@ def input_desired_weight(message, errormsg, weight):
     return desired_weight
 
 
-# @clear_screen
+@clear_screen
 def new_user_data(user_info):
     print("Edit Your Data:")
     print("Please add the proper units to your height and weight")
