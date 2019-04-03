@@ -1,4 +1,3 @@
-import welcome
 import user
 import os
 import time
@@ -46,7 +45,7 @@ def main_menu(user_info):
         login(user_info)
         user.fetch_user_info(user_info)
         if len(user_info) == 1:
-            welcome.new_user_data(user_info)
+            new_user_data(user_info)
     else:
         print("Invalid Output...")
         main_menu(user_info)
@@ -55,11 +54,11 @@ def main_menu(user_info):
 
 @clear_screen
 def add_food_to_database(user_info):
+    print("What would you like to add,", user_info["Name"])
     name = input("Name of the food: ")
     unit = input("Unit of calories: ")
     calorie = float(input("Number of calories per unit: "))
     food.add_food_to_database(name, calorie, unit)
-    food_base = food.load_food()
     return name
 
 
@@ -146,17 +145,19 @@ def recommender(user_info):
         food_data = food_base[recommendation]
         print(">> {0}: {1} calories per {2} [{3}]".format(
             recommendation, food_data["Unit Calorie"], food_data["Unit"], food_data["Mode"]))
-    a = input("Press enter to leave...")
+    _ = input("Press enter to leave...")
     return
 
 
 @clear_screen
 def remove_food_menu(user_info):
+    food_data_loaded = False
     try:
         _, food_data = day_tracking._get_date_data(user_info)
+        food_data_loaded = True
     except FileNotFoundError:
         print("No food to display...")
-    if food_data:
+    if food_data_loaded:
         names = []
         counter = 1
         for named, params in food_data.items():
@@ -175,13 +176,15 @@ def remove_food_menu(user_info):
 
 @clear_screen
 def food_menu(user_info):
+    food_data_loaded = False
     try:
         _, food_data = day_tracking._get_date_data(user_info)
+        food_data_loaded = True
     except FileNotFoundError:
         print("No food to display...")
     counter = 1
     print("Max Calories: {0:.2f}".format(day_tracking.get_allowed_calories_today(user_info)))
-    if food_data:
+    if food_data_loaded:
         remaining_calories = day_tracking.get_remaining_calories_today(user_info)
         print("Remaining Calories: {0:.2f}".format(remaining_calories))
         if remaining_calories < 0:
@@ -226,6 +229,7 @@ def change_date_menu(user_info):
             change_date_menu(user_info)
     user_menu(user_info)
 
+
 def signup():
     print("Sign Up: ")
     username = input("Enter Username: ")
@@ -234,6 +238,7 @@ def signup():
         print("Username already taken")
         signup()
     return
+
 
 def login(user_info: dict):
     """
@@ -276,7 +281,7 @@ def user_menu(user_info):
     elif choice == '3':
         weight_menu(user_info)
     elif choice == '4':
-        welcome.new_user_data(user_info)
+        new_user_data(user_info)
     elif choice == '5':
         change_date_menu(user_info)
     elif choice == 'X':
@@ -286,3 +291,89 @@ def user_menu(user_info):
         user_menu(user_info)
     user_menu(user_info)
 
+
+"""
+Functions from welcome.py
+"""
+
+
+def input_date(prompt, error_msg):
+    date = input(prompt)
+    try:
+        day_tracking.create_date(date)
+    except ValueError:
+        print(error_msg)
+        return input_date(prompt, error_msg)
+    return date
+
+
+def input_age(prompt, error_msg):
+    try:
+        age = int(input(prompt))
+        if age > 100 or age < 0:
+            raise ValueError()
+        return age
+    except ValueError:
+        print(error_msg)
+        return input_age(prompt, error_msg)
+
+
+def input_sex():
+    sex = input("What is your sex (M/F)?")
+    if sex == 'M' or sex == 'F':
+        return sex
+    else:
+        print("Invalid Sex")
+        return input_sex()
+
+
+def input_desired_weight(message, errormsg, weight):
+    desired_weight = fitness_calc.lexical_metric_conversion(input(message))
+    if float(weight) < float(desired_weight) or float(desired_weight) < 0:
+        print(errormsg)
+        return input_desired_weight(message, errormsg, weight)
+    return desired_weight
+
+
+@clear_screen
+def new_user_data(user_info):
+    print("Edit Your Data:")
+    print("Please add the proper units to your height and weight")
+    try:
+        height = fitness_calc.lexical_metric_conversion(input("What is your height: "))
+        if float(height) < 0:
+            print("Error: Invalid Height")
+            time.sleep(3)
+            new_user_data(user_info)
+            return
+        print("Height converted to: {0} meters".format(height))
+        weight = fitness_calc.lexical_metric_conversion(input("What is your weight: "))
+        if float(weight) < 0:
+            print("Error: Invalid Weight")
+            time.sleep(3)
+            new_user_data(user_info)
+            return
+    except KeyError:
+        print("Invalid value inputted...")
+        time.sleep(3)
+        new_user_data(user_info)
+        return
+    print("Weight converted to: {0} kg".format(weight))
+    sex = input_sex()
+    age = input_age("What is your age?", "Invalid age")
+
+    os.system('start "C:\Program Files (x86)\Google\
+                Chrome\Application\chrome.exe" https://www.vertex42.com/ExcelTemplates/Images/body-mass-index-chart.gif')
+    print("Use the image as a guide...")
+    desired_weight = input_desired_weight("What is your desired weight (add unit): ",
+                                          "Weight must be lesser than your actual weight.", weight)
+    date = input_date("When do you want to achieve this? (mm/dd/YYYY)", "Invalid Date")
+    user_info['Weight'] = weight
+    user_info['Height'] = height
+    user_info['Sex'] = sex
+    user_info['Age'] = age
+    user_info['BMI'] = fitness_calc.calculate_bmi(weight, height)
+    user_info['BMR'] = fitness_calc.calculate_bmr(weight, height, sex, age)
+    user_info['Desired Weight'] = desired_weight
+    user_info['Goal Date'] = date
+    user.write_user_data(user_info)
