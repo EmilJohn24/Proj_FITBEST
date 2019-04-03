@@ -14,16 +14,10 @@ def get_user_data():
     return userbase
 
 
-def signup():
-    print("Sign Up: ")
-    username = input("Enter Username: ")
-    password = input("Enter Password: ")
-    while not _create_account(username, password):
-        signup()
-        return
 
 
-def _create_account(username, password):
+
+def create_account(username, password):
     users = open('user.txt', 'a')
     userbase = get_user_data()
     if username not in userbase.keys():
@@ -33,27 +27,7 @@ def _create_account(username, password):
         return True
 
     else:
-        print("Username already taken")
         return False
-
-def login(user_info: dict):
-    """
-        Asks the user for a username and password (in the console) and stores
-        his login at an externally-defined dictionary
-    """
-    print("Login: ")
-    username = input("\tEnter Username: ")
-    password = input("\tEnter Password: ")
-    userbase = get_user_data()
-
-    if (username, password) in userbase.items():
-        user_info.clear()  # Clears previous login
-        user_info['User'] = username
-        fetch_user_info(user_info)
-
-    else:
-        print("Invalid login...", end="\n\n")
-        login(user_info)
 
 
 def write_user_data(user_info: dict):
