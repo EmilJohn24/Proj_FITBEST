@@ -34,7 +34,7 @@ def main_menu(user_info):
     print("\t3. Exit")
     choice = input("\t> ")
     if choice == '1':
-        user.signup()
+        signup()
         print("We're preparing your account...")
         time.sleep(5)
         print("Sign up complete...")
@@ -225,6 +225,33 @@ def change_date_menu(user_info):
             change_date_menu(user_info)
     user_menu(user_info)
 
+def signup():
+    print("Sign Up: ")
+    username = input("Enter Username: ")
+    password = input("Enter Password: ")
+    if not user.create_account(username, password):
+        print("Username already taken")
+        signup()
+    return
+
+def login(user_info: dict):
+    """
+        Asks the user for a username and password (in the console) and stores
+        his login at an externally-defined dictionary
+    """
+    print("Login: ")
+    username = input("\tEnter Username: ")
+    password = input("\tEnter Password: ")
+    userbase = user.get_user_data()
+
+    if (username, password) in userbase.items():
+        user_info.clear()  # Clears previous login
+        user_info['User'] = username
+        user.fetch_user_info(user_info)
+
+    else:
+        print("Invalid login...", end="\n\n")
+        login(user_info)
 
 
 @clear_screen
