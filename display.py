@@ -54,7 +54,7 @@ def main_menu(user_info):
 
 @clear_screen
 def add_food_to_database(user_info):
-    print("What would you like to add,", user_info["Name"])
+    print("What would you like to add,", user_info["User"], '?')
     name = input("Name of the food: ")
     unit = input("Unit of calories: ")
     calorie = float(input("Number of calories per unit: "))
