@@ -1,4 +1,4 @@
-__pycache__/**
-Users/**
-venv/**
-users.txt
+**/__pycache__
+**/Users
+**/venv
+user.txt
